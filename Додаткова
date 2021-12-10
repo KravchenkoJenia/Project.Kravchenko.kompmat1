@@ -1,0 +1,64 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+using namespace std;
+class Passanger
+{
+private:
+    string Name;
+    string cityofdepart;
+    string cityofarrival;
+    double length;
+public:
+    string Name_Get(string name)
+    {
+        Name = name;
+    }
+    string Name_Set()
+    {
+        return Name;
+    }
+    int Price(int x, vector<Route> routes)
+    {
+        for (int i = 0; i < routes.size(); i++)
+        {
+            if ((cityofarrival == routes[i].city1 && cityofdepart == routes[i].city2) || (cityofarrival == routes[i].city2 && cityofdepart == routes[i].city1))
+            {
+                length = routes[i].length;
+            }
+        }
+        return x * length;
+    }
+};
+class Route
+{
+public:
+    string city1;
+    string city2;
+    double length;
+    Route(string City1, string City2, double Length)
+    {
+        city1 = City1;
+        city2 = City2;
+        length = Length;
+    }
+};
+
+int main()
+{
+    std::vector<Route> new_routes;
+    string city1;
+    string city2;
+    double length;
+    double priceofkm;
+    ifstream in("routes.txt"); // окрываем файл для чтения
+    if (in.is_open())
+    {
+        while (in >> city1 >> city2 >> length)
+        {
+            new_routes.push_back(Route(city1, city2, length));
+        }
+    }
+    in.close();
+    cin >> priceofkm;
