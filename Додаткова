@@ -19,6 +19,14 @@ public:
     {
         return Name;
     }
+    string cityofdepart_Get()
+    {
+        return cityofdepart;
+    }
+    string cityofarrival_Get()
+    {
+        return cityofarrival;
+    }
     int Price(int x, vector<Route> routes)
     {
         for (int i = 0; i < routes.size(); i++)
@@ -75,7 +83,8 @@ int main()
     cin >> priceofkm;
     for (int i = 0; i < passangers.size(); i++)
     {
-        cout << passangers[i].Name_Get()<<" " << passangers[i].Price(priceofkm,new_routes);
+        cout << passangers[i].Name_Get() << ": " << passangers[i].cityofdepart_Get()<<"-"<< passangers[i].cityofarrival_Get()<<"\nPrice: " << passangers[i].Price(priceofkm, new_routes);
+        cout << "\n\n";
     }
     return 0;
 }
